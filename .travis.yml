@@ -6,10 +6,11 @@ node_js:
   - 4.1.1
 before_script:
   - npm install -g grunt-cli
-before_install: 
-  - docker build -t jlikness/docker-contain-prez .
 after_success:
-  if [ "$TRAVIS_BRANCH" == "master" ]; then 
-  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" https://hub.docker.com/;
-  docker push jlikness/docker-contain-prez;
-  fi
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=jlikness/docker-contain-prez
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
