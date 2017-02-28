@@ -1,5 +1,15 @@
+sudo: required
 language: node_js
+services:
+  - docker 
 node_js:
   - 4.1.1
 before_script:
   - npm install -g grunt-cli
+before_install: 
+  - docker build -t jlikness/docker-contain-prez .
+after_success:
+  if [ "$TRAVIS_BRANCH" == "master" ]; then 
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  docker push jlikness/docker-contain-prez;
+  fi
