@@ -134,6 +134,12 @@ public class WhoAmI {
 			<section id="start">
 				<section>
 					<h2>Getting Started</h2>
+					<pre><code class="text">
+docker run hello-world
+</code></pre>
+				</section>
+				<section>
+					<h2>Getting Started</h2>
 					<code>index.html</code></pre>
 					<pre><code class="html">
 &lt;html>
@@ -157,6 +163,107 @@ docker ps
 docker stop {id}
 docker rm {id}  
 </code></pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Building Images</h2>
+					<pre><code class="text">
+FROM ubuntu:16.04
+RUN rm /bin/sh &amp;&amp; ln -s /bin/bash /bin/sh
+RUN apt-get update \
+    &amp;&amp; apt-get -y install build-essential \
+    &amp;&amp; apt-get -y install curl \
+    &amp;&amp; curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+    &amp;&amp; apt-get -y install nodejs
+    
+RUN npm i -g angular-cli@1.0.0-beta.24
+
+RUN mkdir -p /src 
+COPY . /src 
+
+WORKDIR /src 
+
+RUN npm i 
+RUN ng build --prod --aot 
+</code></pre>
+				</section>
+				<section>
+					<code>FROM ubuntu:16.04</code>
+					<p>This command creates a base image. It goes to the trusted Docker Hub registry, finds a repository named "ubuntu" then
+						pulls the image with the tag "16.04".
+					</p>
+				</section>
+				<section>
+					<code>RUN rm /bin/sh &amp;&amp; ln -s /bin/bash /bin/sh</code>
+					<p>This command removes a tiny shell that is standard with Ubuntu and replaces it with a symbolic link to the bash shell
+						instead. At the end of this command, a second iterim image is created. Whatever follows "run" is executed in the container,
+						and then a snapshot of the container is taken when the command completes.</p>
+				</section>
+				<section>
+					<code>RUN apt-get update \ &hellip;</code>
+					<p>Several commands chained together. These commands update packages on the image to the latest and install dependencies
+						including Node.js. Yet a third image is created. Chaining commands cuts down on the number of interim images.
+					</p>
+				</section>
+				<section>
+					<code>RUN npm i -g angular-cli@1.0.0-beta.24</code>
+					<p>Now that Node.js and the Node Package Manager are installed, the Angular Command Line Interface (CLI) is installed.
+						Another interim image is created.</p>
+				</section>
+				<section>
+					<code>COPY . /src</code>
+					<p>The contents of the current directory are recursively copied to the contents of a "src" folder in the container. Left
+						is local context, right is container context.</p>
+				</section>
+				<section>
+					<h2>Summary</h2>
+					<p>The Dockerfile just shown essentially prepares a build machine capable of creating Angular 2 applications, then moves
+						the source from a project to the build and then compiles a production image of Angular.</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Dockerfile Commands</h2>
+					<p>The complete listing is available online (<a href="https://docs.docker.com/engine/reference/builder/" target="_blank">Dockerfile reference</a>).
+						These are some handy commands to know when creating your own images.</p>
+				</section>
+				<section>
+					<h2>CMD, ENTRYPOINT</h2>
+					<p>This command provides a default set of instructions to execute when a container is started. Unlike "run" there should
+						be only one "cmd" and it may be overridden by derived images. "Entrypoint" refers to the executable and "cmd" provides
+						a default set of parameters.</p>
+				</section>
+				<section>
+					<h2>EXPOSE</h2>
+					<p>Expose tells the container to listen on a port. By default, you cannot communicate with a container. Expose only sets
+						the container up to listen at the port and does not make the port available from the host. To do this requires mapping
+						the port with the "-p" flag.</p>
+				</section>
+				<section>
+					<h2>ADD</h2>
+					<p>Add is similar to "copy"" in that it places content in the container. It differs in that the content can be a URL ("copy"
+						only looks at the filesystem.)</p>
+				</section>
+				<section>
+					<h2>VOLUME</h2>
+					<p>Volume exposes the container's filesystem via a "mount point." Whatever path is specified by this command is available
+						to mount to the local filesystem when the container is run. Note this just makes it available. Other configuration
+						is required to perform the actual mapping.
+					</p>
+				</section>
+			</section>
+			<section id="twodemo">
+				<h2>Simple Two Container Demo</h2>
+				<p>The demo is based off a lesson in an <a href="https://github.com/JeremyLikness/ng2ts-workshop-v2" target="_blank">all-day Angular (2.x) workshop</a>.
+					The specific lesson is <a href="https://github.com/JeremyLikness/ng2ts-workshop-v2/tree/master/55-Docker" target="_blank">55-Docker</a>					and involves an Angular container that talks to a micro-service container.</p>
+			</section>
+			<section id="compose">
+				<section>
+					<h2>Orchestrate Multiple Containers</h2>
+					<p>Docker Compose enables you to describe an environment. That environment can include one or more containers, private
+						networks, shared storage, and even load-balancers and proxies. A "Docker Compose file" contains the instructions for
+						building and orchestrating the environment.</p>
 				</section>
 			</section>
 		</div>
