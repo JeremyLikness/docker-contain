@@ -1,5 +1,8 @@
 sudo: required
 language: node_js
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
 services:
   - docker 
 node_js:
