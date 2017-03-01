@@ -114,7 +114,7 @@ public class WhoAmI {
 				</section>
 				<section data-transition="fade">
 					<h2>Lightweight</h2>
-					<img src="./images/lightweight.jpg" class="no-border"/>
+					<img src="./images/lightweight.jpg" class="no-border" />
 				</section>
 				<section data-transition="fade">
 					<h2>Predictable and Consistent</h2>
@@ -123,13 +123,40 @@ public class WhoAmI {
 					<h2>Fast</h2>
 				</section>
 				<section data-transition="fade">
-					<h2>Enterprise
-						<h2>
-							<ul>
-								<li>Scalable
-									<li>Elastic
-										<li>Resilient
-							</ul>
+					<h2>Enterprise</h2>
+					<ul>
+						<li>Scalable
+							<li>Elastic
+								<li>Resilient
+					</ul>
+				</section>
+			</section>
+			<section id="start">
+				<section>
+					<h2>Getting Started</h2>
+					<code>index.html</code></pre>
+					<pre><code class="html">
+&lt;html>
+	&lt;head>&lt;title>Simple Page&lt;/title>&lt;/head>
+	&lt;body>&lt;h1>Hello, Docker!&lt;/h1>&lt;/body>
+&lt;/html>
+</code></pre>
+					<code>Dockerfile</code></pre>
+					<pre><code class="text">
+FROM nginx 
+COPY index.html /usr/share/nginx/html
+EXPOSE 80/tcp 
+</code></pre>
+				</section>
+				<section>
+					<h2>Command Line</h2>
+					<pre><code class="text">
+docker build -t hello . 
+docker run -d -p 80:80 hello
+docker ps 
+docker stop {id}
+docker rm {id}  
+</code></pre>
 				</section>
 			</section>
 		</div>
