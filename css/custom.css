@@ -1,0 +1,19 @@
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.no-shadow {
+	box-shadow: none !important;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.tile {
+    width: 30%;
+}

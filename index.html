@@ -11,6 +11,7 @@
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/simple.css">
+	<link rel="stylesheet" href="css/custom.css">
 
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -28,21 +29,37 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
+			<section id="title">
 				<h1>Contain your Excitement!</h1>
-				<img style="border: none;" src="./images/docker_small.png" alt="Docker" title="Docker" />
+				<img class="plain" src="./images/docker_small.png" alt="Docker" title="Docker" />
 				<h2>Docker for Developers</h2>
 				<p>
 					<small>Presented by <a href="https://twitter.com/JeremyLikness" target="_blank">@JeremyLikness</a></small>
 				</p>
 			</section>
-			<section>
-				<img src="./images/ivisionlogo.png" style="border: none; box-shadow: none;" alt="iVision" title="iVision" />
-				<img src="./images/ivisionareas.jpg" style="border: none; box-shadow: none; float: left;" alt="iVision" title="iVision" />
+			<section id="iVision" data-transition="concave">
+				<img src="./images/ivisionlogo.png" class="plain" alt="iVision" title="iVision" />
+				<img src="./images/ivisionareas.jpg" class="plain float-left" alt="iVision" title="iVision" />
 				<p><a href="https://ivision.com/" target="_blank">https://iVision.com/</a></p>
-				<blockquote style="box-shadow: none;">A privately held IT consulting firm headquartered in Midtown, Atlanta.</blockquote>				
+				<blockquote class="no-shadow">A privately held IT consulting firm headquartered in Midtown, Atlanta.</blockquote>
 			</section>
-			<section id="fragments">
+			<section id="Jeremy" data-transition="zoom">
+				<img src="./images/jeremylikness.jpg" class="plain float-right" alt="Jeremy Likness" title="Jeremy Likness" />
+				<h2>About Jeremy</h2>
+				<pre class="no-shadow"><code class="typescript">
+public class WhoAmI {
+	public numYearsExperience: number = 20;
+	public beganProgrammingAtAge: number = 7;
+	public numYearsMVP: number = 7;
+}
+				</code></pre>
+				<ul>
+					<li><a href="https://ivision.com/author/jlikness" target="_blank">iVision articles</a>
+						<li><a href="http://amzn.to/2lWQpL7" target="_blank">Amazon author page</a>
+							<li><a href="https://github.com/jeremylikness" target="_blank">GitHub repo</a>
+				</ul>
+			</section>
+			<section id="agenda">
 				<h2>Agenda</h2>
 				<ul>
 					<li class="fragment">What is Docker?</li>
@@ -52,6 +69,68 @@
 					<li class="fragment">Docker Compose</li>
 					<li class="fragment">Q &amp; A</li>
 				</ul>
+			</section>
+			<section id="what">
+				<section>
+					<h1>What Is Docker?</h1>
+				</section>
+				<section>
+					<h2>Physical Server</h2>
+					<img class="no-shadow no-border" src="./images/physical-server.jpg" />
+				</section>
+				<section>
+					<h2>Virtual Machine</h2>
+					<img class="no-shadow no-border" src="./images/virtual_machine.png" />
+				</section>
+				<section data-background="./images/Simple-Cloud-Icon.png">
+					<h2>Virtual in the Cloud</h2>
+					<img class="no-shadow no-border" src="./images/virtual_machine.png" />
+				</section>
+				<section>
+					<img class="no-shadow no-border" src="./images/what-is-vm.png" />
+				</section>
+				<section>
+					<img class="no-shadow no-border" src="./images/what-is-docker-diagram.png" />
+				</section>
+				<section>
+					<h2>What Docker is...</h2>
+					<ul>
+						<li>Standardized unit for software development
+							<li>Code, runtime, tools and libraries in one place
+								<li>Shared host (multiple containers per host, potentially multiple hosts per VM)
+									<li>Least privilege, secure by default
+					</ul>
+				</section>
+			</section>
+			<section id="why">
+				<section data-transition="fade">
+					<h1>Why Docker?</h1>
+				</section>
+				<section data-transition="fade">
+					<h2>Standardized</h2>
+					<img src="./images/aws.jpg" class="tile no-border no-shadow" />
+					<img src="./images/google-cloud-logo.png" class="tile no-border no-shadow" />
+					<img src="./images/azure-logo.png" class="tile no-border no-shadow" />
+				</section>
+				<section data-transition="fade">
+					<h2>Lightweight</h2>
+					<img src="./images/lightweight.jpg" class="no-border"/>
+				</section>
+				<section data-transition="fade">
+					<h2>Predictable and Consistent</h2>
+				</section>
+				<section data-transition="fade">
+					<h2>Fast</h2>
+				</section>
+				<section data-transition="fade">
+					<h2>Enterprise
+						<h2>
+							<ul>
+								<li>Scalable
+									<li>Elastic
+										<li>Resilient
+							</ul>
+				</section>
 			</section>
 		</div>
 	</div>

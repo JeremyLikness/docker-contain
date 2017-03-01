@@ -8,6 +8,14 @@ Docker is the de facto standard for container technology, a lightweight mechanis
 
 ## Run this Example 
 
+### Docker 
+
+Requires [Docker](https://www.docker.com). 
+
+[View instructions on Docker Hub](https://hub.docker.com/r/jlikness/docker-contain-prez/).
+
+### Node
+
 Requires [Node.js](https://nodejs.org).
 
 `git clone https://github.com/iVisionATL/docker-contain.git` 
