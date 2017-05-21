@@ -1,4 +1,4 @@
-# Contain your Excitement [![Build Status](https://travis-ci.org/jeremylikness/docker-contain-music-city.svg?branch=master)](https://travis-ci.org/jeremylikness/docker-contain-music-city) 
+# Contain your Excitement [![Build Status](https://travis-ci.org/JeremyLikness/docker-contain-music-city.svg?branch=master)](https://travis-ci.org/JeremyLikness/docker-contain-music-city) 
 
 This is a presentation about Docker containers, written for the [Music City Code](https://www.musiccitycode.com/). 
 
@@ -18,7 +18,7 @@ Requires [Docker](https://www.docker.com).
 
 Requires [Node.js](https://nodejs.org).
 
-`git clone https://github.com/jeremylikness/docker-contain-music-city.git` 
+`git clone https://github.com/JeremyLikness/docker-contain-music-city.git` 
 
 `cd docker-contain-music-city` 
 

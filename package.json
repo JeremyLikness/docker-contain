@@ -1,8 +1,8 @@
 {
-  "name": "docker-contain",
+  "name": "docker-contain-mcc",
   "version": "1.0.0",
-  "description": "Docker presentation by Jeremy Likness for iVision",
-  "homepage": "https://github.com/iVisionATL/docker-contain",
+  "description": "Docker presentation by Jeremy Likness for Music City Code",
+  "homepage": "https://github.com/JeremyLikness/docker-contain-music-city",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
@@ -10,12 +10,12 @@
   },
   "author": {
     "name": "Jeremy Likness",
-    "email": "jlikness@ivision.com",
+    "email": "jeremy@jeremylikness.com",
     "web": "http://bit.ly/coderblog"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iVisionATL/docker-contain.git"
+    "url": "https://github.com/JeremyLikness/docker-contain-music-city.git"
   },
   "engines": {
     "node": ">=4.0.0"
