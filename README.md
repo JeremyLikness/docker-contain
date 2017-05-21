@@ -1,6 +1,6 @@
-# Contain your Excitement [![Build Status](https://travis-ci.org/iVisionATL/docker-contain.svg?branch=master)](https://travis-ci.org/iVisionATL/docker-contain) 
+# Contain your Excitement [![Build Status](https://travis-ci.org/jeremylikness/docker-contain-music-city.svg?branch=master)](https://travis-ci.org/jeremylikness/docker-contain-music-city) 
 
-This is a presentation about Docker containers, originally written for the [Gwinnett Georgia Microsoft User Group (GGMUG)](https://www.meetup.com/Gwinnett-Microsoft-Users-Group/events/237645287/). 
+This is a presentation about Docker containers, written for the [Music City Code](https://www.musiccitycode.com/). 
 
 ## Abstract 
 
@@ -12,15 +12,15 @@ Docker is the de facto standard for container technology, a lightweight mechanis
 
 Requires [Docker](https://www.docker.com). 
 
-[View instructions on Docker Hub](https://hub.docker.com/r/jlikness/docker-contain-prez/).
+[View instructions on Docker Hub](https://hub.docker.com/r/jlikness/docker-contain-mcc/).
 
 ### Node
 
 Requires [Node.js](https://nodejs.org).
 
-`git clone https://github.com/iVisionATL/docker-contain.git` 
+`git clone https://github.com/jeremylikness/docker-contain-music-city.git` 
 
-`cd docker-contain` 
+`cd docker-contain-music-city` 
 
 `npm i` 
 
@@ -34,4 +34,4 @@ Requires [Node.js](https://nodejs.org).
 
 MIT licensed
 
-Copyright (C) 2016 Hakim El Hattab, http://hakim.se
+Original Copyright (C) 2016 Hakim El Hattab, http://hakim.se
