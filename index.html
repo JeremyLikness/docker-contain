@@ -32,10 +32,13 @@
 			<section id="title">
 				<h1>Docker 4 Devs</h1>
 				<img class="plain" src="./images/docker_small.png" alt="Docker" title="Docker" /><br/>
-				<img class="plain" src="./images/mcc.png" alt="Music City Code" title="Music City Code"/>
+				<img class="plain" src="./images/mcc.png" alt="Music City Code" title="Music City Code" />
 				<p>
 					<small>Presented by <a href="https://twitter.com/JeremyLikness" target="_blank">@JeremyLikness</a></small>
 				</p>
+			</section>
+			<section id="sponsors">
+				<img src="./images/sponsors.png" />
 			</section>
 			<section id="iVision" data-transition="concave">
 				<img src="./images/ivisionlogo.png" class="plain" alt="iVision" title="iVision" />
@@ -61,7 +64,13 @@ public class WhoAmI {
 			</section>
 			<section id="mcc">
 				<h2>Thank you, <a href="https://www.musiccitycode.com/" target="_blank">Music City Code</a></h2>
-				<style type="text/css">.kuula7lml6 { width: 100%; height: 640px; }</style><iframe class="kuula7lml6" frameborder="0" scrolling="no" allowfullscreen="true" src="https://kuula.co/share/7lmL6?logo=0"></iframe>
+				<style type="text/css">
+					.kuula7lml6 {
+						width: 100%;
+						height: 640px;
+					}
+				</style>
+				<iframe class="kuula7lml6" frameborder="0" scrolling="no" allowfullscreen="true" src="https://kuula.co/share/7lmL6?logo=0"></iframe>
 			</section>
 			<section id="agenda">
 				<h2>Agenda</h2>
@@ -71,6 +80,7 @@ public class WhoAmI {
 					<li class="fragment">Getting Started</li>
 					<li class="fragment">Building Images</li>
 					<li class="fragment">Docker Compose</li>
+					<li class="fragment">Advanced Containers</li>
 					<li class="fragment">Q &amp; A</li>
 				</ul>
 			</section>
@@ -193,30 +203,30 @@ RUN ng build --prod --aot
 </code></pre>
 				</section>
 				<section>
-					<code>FROM ubuntu:16.04</code>
+					<code class="highlighter">FROM ubuntu:16.04</code>
 					<p>This command creates a base image. It goes to the trusted Docker Hub registry, finds a repository named "ubuntu" then
 						pulls the image with the tag "16.04".
 					</p>
 				</section>
 				<section>
-					<code>RUN rm /bin/sh &amp;&amp; ln -s /bin/bash /bin/sh</code>
+					<code class="highlighter">RUN rm /bin/sh &amp;&amp; ln -s /bin/bash /bin/sh</code>
 					<p>This command removes a tiny shell that is standard with Ubuntu and replaces it with a symbolic link to the bash shell
 						instead. At the end of this command, a second iterim image is created. Whatever follows "run" is executed in the container,
 						and then a snapshot of the container is taken when the command completes.</p>
 				</section>
 				<section>
-					<code>RUN apt-get update \ &hellip;</code>
+					<code class="highlighter">RUN apt-get update \ &hellip;</code>
 					<p>Several commands chained together. These commands update packages on the image to the latest and install dependencies
 						including Node.js. Yet a third image is created. Chaining commands cuts down on the number of interim images.
 					</p>
 				</section>
 				<section>
-					<code>RUN npm i -g angular-cli@1.0.0-beta.24</code>
+					<code class="highlighter">RUN npm i -g angular-cli@1.0.0-beta.24</code>
 					<p>Now that Node.js and the Node Package Manager are installed, the Angular Command Line Interface (CLI) is installed.
 						Another interim image is created.</p>
 				</section>
 				<section>
-					<code>COPY . /src</code>
+					<code class="highlighter">COPY . /src</code>
 					<p>The contents of the current directory are recursively copied to the contents of a "src" folder in the container. Left
 						is local context, right is container context.</p>
 				</section>
@@ -284,6 +294,66 @@ RUN ng build --prod --aot
 						<li>Links</li>
 						<li>Environment</li>
 						<li>Volumes</li>
+					</ul>
+				</section>
+			</section>
+			<section id="advanced">
+				<section>
+					<h1>Advanced Containers</h1>
+				</section>
+				<section>
+					<h2>Multi-Stage Build</h2>
+					<pre>
+					<code class="text"># ---- Base Node ----
+FROM node:latest AS base
+# install node
+RUN apk add --no-cache nodejs-current
+# set working directory
+WORKDIR /root/fib
+
+# copy project file
+COPY package.json .
+ 
+#
+# ---- Dependencies ----
+FROM base AS dependencies
+# install node packages
+RUN npm set progress=false && npm config set depth 0
+RUN npm install --only=production 
+RUN npm run-script build 
+# copy production node_modules aside
+RUN cp -R node_modules prod_node_modules
+# install ALL node_modules, including 'devDependencies'
+RUN npm install
+ 
+# ---- Release ----
+FROM base AS release
+# copy production node_modules
+COPY --from=dependencies /root/fib/prod_node_modules ./node_modules
+# copy app sources
+COPY index.js .
+# expose port and define CMD
+CMD npm run start</code>
+				</pre>
+				</section>
+				<section>
+					<h2>Function as a Service</h2>
+					<p>Not to be confused with "serverless"</p>
+					<p><a href="https://github.com/alexellis/faas" target="_blank">Docker FaaS on GitHub</a></p>
+					<img src="./images/dockerfaas.png" class="no-border no-shadow" />
+				</section>
+				<section>
+					<h2>Orchestration</h2>
+					<img class="tile no-shadow no-border" src="./images/swarm.png" />
+					<img class="tile no-shadow no-border" src="./images/kubernetes.png" />
+					<img class="tile no-shadow no-border" src="./images/dcos.png" />
+				</section>
+				<section>
+					<h2>Serverless</h2>
+					<ul>
+						<li>WebTask.io</li>
+						<li>Azure Functions</li>
+						<li>AWS Lambda</li>
 					</ul>
 				</section>
 			</section>

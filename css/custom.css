@@ -17,3 +17,7 @@
 .tile {
     width: 30%;
 }
+
+.highlighter {
+	background-color: yellow;
+}
